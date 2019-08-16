@@ -948,7 +948,7 @@ func parseTeletextRow(i *Item, d decoder, fs func() styler, row []byte) {
 					s.update(li.InlineStyle)
 				}
 			}
-		} else if started {
+		} else {
 			// Append text
 			li.Text += string(d.decode(v))
 		}
