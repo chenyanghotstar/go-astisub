@@ -592,7 +592,7 @@ func (s Subtitles) Write(dst string) (err error) {
 }
 
 // parseDuration parses a duration in "00:00:00.000", "00:00:00,000" or "0:00:00:00" format
-func parseDuration(i, millisecondSep string, numberOfMillisecondDigits int) (o time.Duration, err error) {
+func ParseDuration(i, millisecondSep string, numberOfMillisecondDigits int) (o time.Duration, err error) {
 	// Split milliseconds
 	var parts = strings.Split(i, millisecondSep)
 	var milliseconds int
