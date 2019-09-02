@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/asticode/go-astilog"
-	"github.com/asticode/go-astitools/ptr"
+	astiptr "github.com/asticode/go-astitools/ptr"
 	"github.com/pkg/errors"
 )
 
@@ -1179,7 +1179,7 @@ func (e *ssaEvent) string(format []string) string {
 
 // parseDurationSSA parses an .ssa duration
 func parseDurationSSA(i string) (time.Duration, error) {
-	return parseDuration(i, ".", 3)
+	return ParseDuration(i, ".", 3)
 }
 
 // WriteToSSA writes subtitles in .ssa format

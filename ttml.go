@@ -12,8 +12,8 @@ import (
 
 	"sort"
 
-	"github.com/asticode/go-astitools/map"
-	"github.com/asticode/go-astitools/string"
+	astimap "github.com/asticode/go-astitools/map"
+	astistring "github.com/asticode/go-astitools/string"
 	"github.com/pkg/errors"
 )
 
@@ -277,7 +277,7 @@ func (d *TTMLInDuration) UnmarshalText(i []byte) (err error) {
 		text = text[:indexes[0]] + ".000"
 	}
 
-	d.d, err = parseDuration(text, ".", 3)
+	d.d, err = ParseDuration(text, ".", 3)
 	return
 }
 
@@ -584,7 +584,7 @@ func (s Subtitles) WriteToTTML(o io.Writer) (err error) {
 	sort.Strings(k)
 	for _, id := range k {
 		var ttmlRegion = TTMLOutRegion{TTMLOutHeader: TTMLOutHeader{
-			ID: s.Regions[id].ID,
+			ID:                     s.Regions[id].ID,
 			TTMLOutStyleAttributes: ttmlOutStyleAttributesFromStyleAttributes(s.Regions[id].InlineStyle),
 		}}
 		if s.Regions[id].Style != nil {
@@ -601,7 +601,7 @@ func (s Subtitles) WriteToTTML(o io.Writer) (err error) {
 	sort.Strings(k)
 	for _, id := range k {
 		var ttmlStyle = TTMLOutStyle{TTMLOutHeader: TTMLOutHeader{
-			ID: s.Styles[id].ID,
+			ID:                     s.Styles[id].ID,
 			TTMLOutStyleAttributes: ttmlOutStyleAttributesFromStyleAttributes(s.Styles[id].InlineStyle),
 		}}
 		if s.Styles[id].Style != nil {
@@ -614,8 +614,8 @@ func (s Subtitles) WriteToTTML(o io.Writer) (err error) {
 	for _, item := range s.Items {
 		// Init subtitle
 		var ttmlSubtitle = TTMLOutSubtitle{
-			Begin: TTMLOutDuration(item.StartAt),
-			End:   TTMLOutDuration(item.EndAt),
+			Begin:                  TTMLOutDuration(item.StartAt),
+			End:                    TTMLOutDuration(item.EndAt),
 			TTMLOutStyleAttributes: ttmlOutStyleAttributesFromStyleAttributes(item.InlineStyle),
 		}
 
@@ -635,7 +635,7 @@ func (s Subtitles) WriteToTTML(o io.Writer) (err error) {
 			for _, lineItem := range line.Items {
 				// Init ttml item
 				var ttmlItem = TTMLOutItem{
-					Text: lineItem.Text,
+					Text:                   lineItem.Text,
 					TTMLOutStyleAttributes: ttmlOutStyleAttributesFromStyleAttributes(lineItem.InlineStyle),
 					XMLName:                xml.Name{Local: "span"},
 				}

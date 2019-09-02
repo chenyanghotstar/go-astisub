@@ -29,9 +29,9 @@ var (
 	bytesWebVTTTimeBoundariesSeparator = []byte(webvttTimeBoundariesSeparator)
 )
 
-// parseDurationWebVTT parses a .vtt duration
-func parseDurationWebVTT(i string) (time.Duration, error) {
-	return parseDuration(i, ".", 3)
+// ParseDurationWebVTT parses a .vtt duration
+func ParseDurationWebVTT(i string) (time.Duration, error) {
+	return ParseDuration(i, ".", 3)
 }
 
 // ReadFromWebVTT parses a .vtt content
@@ -125,11 +125,11 @@ func ReadFromWebVTT(i io.Reader) (o *Subtitles, err error) {
 			var partsRight = strings.Split(parts[1], " ")
 
 			// Parse time boundaries
-			if item.StartAt, err = parseDurationWebVTT(parts[0]); err != nil {
+			if item.StartAt, err = ParseDurationWebVTT(parts[0]); err != nil {
 				err = errors.Wrapf(err, "astisub: parsing webvtt duration %s failed", parts[0])
 				return
 			}
-			if item.EndAt, err = parseDurationWebVTT(partsRight[0]); err != nil {
+			if item.EndAt, err = ParseDurationWebVTT(partsRight[0]); err != nil {
 				err = errors.Wrapf(err, "astisub: parsing webvtt duration %s failed", partsRight[0])
 				return
 			}
