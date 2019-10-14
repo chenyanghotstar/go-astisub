@@ -327,7 +327,7 @@ func ReadFromTTML(i io.Reader) (o *Subtitles, err error) {
 	}
 
 	// Loop through regions
-	for _, tr := range ttml.Regions {
+	/*for _, tr := range ttml.Regions {
 		var r = &Region{
 			ID:          tr.ID,
 			InlineStyle: tr.TTMLInStyleAttributes.styleAttributes(),
@@ -340,7 +340,7 @@ func ReadFromTTML(i io.Reader) (o *Subtitles, err error) {
 			r.Style = o.Styles[tr.Style]
 		}
 		o.Regions[r.ID] = r
-	}
+	}*/
 
 	// Loop through subtitles
 	for _, ts := range ttml.Subtitles {
@@ -354,13 +354,13 @@ func ReadFromTTML(i io.Reader) (o *Subtitles, err error) {
 		}
 
 		// Add region
-		if len(ts.Region) > 0 {
+		/*if len(ts.Region) > 0 {
 			if _, ok := o.Regions[ts.Region]; !ok {
 				err = fmt.Errorf("astisub: Region %s requested by subtitle between %s and %s doesn't exist", ts.Region, s.StartAt, s.EndAt)
 				return
 			}
 			s.Region = o.Regions[ts.Region]
-		}
+		}*/
 
 		// Add style
 		if len(ts.Style) > 0 {
