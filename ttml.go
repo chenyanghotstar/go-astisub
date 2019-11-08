@@ -347,10 +347,19 @@ func ReadFromTTML(i io.Reader) (o *Subtitles, err error) {
 		// Init item
 		ts.Begin.framerate = ttml.Framerate
 		ts.End.framerate = ttml.Framerate
+
 		var s = &Item{
 			EndAt:       ts.End.duration(),
 			InlineStyle: ts.TTMLInStyleAttributes.styleAttributes(),
 			StartAt:     ts.Begin.duration(),
+		}
+
+		if len(o.Items) > 0 {
+			lastItem := o.Items[len(o.Items)-1]
+			if lastItem.EndAt == ts.End.duration() && lastItem.StartAt == ts.Begin.duration() {
+				s = lastItem
+				o.Items = o.Items[:len(o.Items)-1]
+			}
 		}
 
 		// Add region
